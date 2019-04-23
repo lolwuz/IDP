@@ -1,0 +1,4 @@
+<launch>
+    <node name="motor_subscriber" pkg="robot_controller" type="motor_subscriber.py"/>
+    <node name="joint_state_receiver" pkg="robot_controller" type="joint_state_receiver.py"/>
+</launch>

@@ -1,0 +1,353 @@
+<PickerScreen>:
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        BoxLayout:
+            size_hint: (1, 0.3)
+            padding: (1, 1)
+            spacing: 1
+
+            Button:
+                text: 'PWM: 0'
+                font_size: '26sp'
+                size_hint: (.6, 1)
+                background_normal: ''
+                background_color: [ .0, .29, .63, 1 ]
+            Button:
+                text: 'Settings'
+                font_size: '26sp'
+                size_hint: (.4, 1)
+                background_normal: ''
+                background_color: [ .0, .29, .63, 1 ]
+
+        BoxLayout:
+            size_hint: (1, 0.7)
+            padding: (1, 1)
+            spacing: 1
+
+            Button:
+                text: 'servo'
+                size_hint: (.3, 1)
+                background_normal: ''
+                background_color: [ .1, .46, .82, 1 ]
+                border: [ 5, 5, 5, 5 ]
+                always_release: False
+                on_release: root.manager.current = 'servo_screen'
+            Button:
+                text: 'led'
+                size_hint: (.3, 1)
+                background_normal: ''
+                background_color: [ .1, .46, .82, 1 ]
+                always_release: False
+                on_release: root.manager.current = 'led_screen'
+            Button:
+                text: 'modes'
+                size_hint: (.4, 1)
+                background_normal: ''
+                background_color: [ .50, .85, 1.00, 1 ]
+                always_release: False
+                on_release: root.manager.current = 'mode_screen'
+
+                Button:
+                text: 'clamper'
+                size_hint: (.3, 1)
+                background_normal: ''
+                background_color: [ .1, .46, .82, 1 ]
+                border: [ 5, 5, 5, 5 ]
+                always_release: False
+                on_release: root.manager.current = 'clamper_screen'
+
+<ServoScreen>:
+    BoxLayout:
+        padding: (1, 1)
+        spacing: 1
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (0.2, 1)
+
+            Button:
+                background_normal: ''
+                background_color: [ .1, .46, .82, 1 ]
+                size_hint: (1, .2)
+                text: 'min'
+            Slider:
+                id: left_suspension
+                size_hint: (1, .8)
+                orientation: 'vertical'
+                min: 0
+                value: 20
+                max: 40
+                on_value: app.set_goal_position(root.ids.left_suspension.value, root.ids.right_suspension.value, root.ids.all_steer.value)
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (0.6, 1)
+
+            Button:
+                size_hint: (1, .2)
+                text: 'back to menu'
+                background_normal: ''
+                background_color: [ .0, .29, .63, 1 ]
+                always_release: False
+                on_release: root.manager.current = 'picker_screen'
+            Image:
+                size_hint: (1, .6)
+                source: 'img/splash.png'
+            Slider:
+                id: all_steer
+                size_hint: (1, .2)
+                min: 0
+                value: 90
+                max: 180
+                on_value: app.set_goal_position(root.ids.left_suspension.value, root.ids.right_suspension.value, root.ids.all_steer.value)
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (0.2, 1)
+
+            Button:
+                background_normal: ''
+                background_color: [ .1, .46, .82, 1 ]
+                size_hint: (1, .2)
+                text: 'max'
+            Slider:
+                id: right_suspension
+                size_hint: (1, .8)
+                orientation: 'vertical'
+                min: 0
+                value: 20
+                max: 40
+                on_value: app.set_goal_position(root.ids.left_suspension.value, root.ids.right_suspension.value, root.ids.all_steer.value)
+
+<LedScreen>:
+    BoxLayout:
+        padding: (1, 1)
+        spacing: 1
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (.2, 1)
+
+            Button:
+                size_hint: (1, .2)
+                background_normal: ''
+                background_color: [ .1, .46, .82, 1 ]
+                text: 'all on'
+                always_release: False
+                on_release: app.set_led_function([255, 255, 255], 'robot', '', 'all')
+
+            Button:
+                size_hint: (1, .2)
+                background_normal: ''
+                background_color: [ .1, .46, .82, 1 ]
+                text: 'open'
+                always_release: False
+                on_release: app.set_led_function([255, 255, 0], 'face', 'mouth', 'open')
+            Button:
+                size_hint: (1, .2)
+                background_normal: ''
+                background_color: [ .1, .46, .82, 1 ]
+                text: 'smile'
+                always_release: False
+                on_release: app.set_led_function([0, 255, 0], 'face', 'mouth', 'smile')
+            Button:
+                size_hint: (1, .2)
+                background_normal: 'confused'
+                background_color: [ .1, .46, .82, 1 ]
+                text: 'sad'
+                always_release: False
+                on_release: app.set_led_function([0, 0, 255], 'face', 'mouth', 'sad')
+            Button
+                size_hint: (1, .2)
+                background_normal: ''
+                background_color: [ .0, .29, .63, 1 ]
+                text: 'neutral'
+                always_release: False
+                on_release: app.set_led_function([255, 255, 255], 'face', 'mouth', 'neutral')
+
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (.6, 1)
+
+            Button:
+                size_hint: (1, .2)
+                text: 'back to menu'
+                background_normal: ''
+                background_color: [ .0, .29, .63, 1 ]
+                always_release: False
+                on_release: root.manager.current = 'picker_screen'
+
+            Slider:
+                size_hint: (1, .2)
+                id: red
+                orientation: 'horizontal'
+                min: 0
+                value: 100
+                max: 255
+                on_value: app.set_led_function([ root.ids.red.value, root.ids.green.value, root.ids.blue.value ], 'robot', '', 'all')
+
+            Slider:
+                size_hint: (1, .2)
+                id: green
+                orientation: 'horizontal'
+                min: 0
+                value: 100
+                max: 255
+                on_value: app.set_led_function([ root.ids.red.value, root.ids.green.value, root.ids.blue.value ], 'robot', '', 'all')
+
+            Slider:
+                size_hint: (1, .2)
+                id: blue
+                orientation: 'horizontal'
+                min: 0
+                value: 100
+                max: 255
+                on_value: app.set_led_function([ root.ids.red.value, root.ids.green.value, root.ids.blue.value ], 'robot', '', 'all')
+
+            Label:
+                text: 'test'
+                size_hint: (1, .2)
+
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (.2, 1)
+
+            Button:
+                size_hint: (1, .2)
+                background_normal: ''
+                background_color: [ .1, .46, .82, 1 ]
+                text: 'all off'
+                always_release: False
+                on_release: app.set_led_function([0, 0, 0], 'robot', '', 'all')
+
+            Label:
+                text: 'test'
+                size_hint: (1, .6)
+
+            Button:
+                size_hint: (1, .2)
+                background_normal: ''
+                background_color: [ .1, .46, .82, 1 ]
+                text: 'all off'
+
+
+<SettingScreen>:
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        Button:
+            text: 'My settings button'
+        Button:
+            text: 'Back to menu'
+            on_release: root.manager.current = 'picker_screen'
+            always_release: False
+
+<ModeScreen>:
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        BoxLayout:
+            padding: (1, 1)
+            spacing: 1
+            Button:
+                background_normal: ''
+                background_color: [ .0, .29, .63, 1 ]
+                on_release: root.manager.current = 'picker_screen'
+                always_release: False
+
+                Image:
+                    source: 'img/race.png'
+                    y: self.parent.y + self.parent.height - 160
+                    x: self.parent.x
+                    size: 150, 150
+                    allow_stretch: True
+
+            Button:
+                background_normal: ''
+                background_color: [ .1, .46, .82, 1 ]
+                always_release: False
+                on_press: app.send_base_msg('tower', [])
+
+                Image:
+                    source: 'img/transport_rebuild.png'
+                    y: self.parent.y + self.parent.height - 160
+                    x: self.parent.x
+                    size: 150, 150
+                    allow_stretch: True
+
+            Button:
+                background_normal: ''
+                background_color: [ .1, .46, .82, 1 ]
+                always_release: False
+                on_press: app.send_base_msg('parcour', [])
+
+                Image:
+                    source: 'img/parcour_mode.png'
+                    y: self.parent.y + self.parent.height - 160
+                    x: self.parent.x
+                    size: 150, 150
+                    allow_stretch: True
+
+        BoxLayout:
+            padding: (1, 1)
+            spacing: 1
+            Button:
+                background_normal: ''
+                background_color: [ .1, .46, .82, 1 ]
+                always_release: False
+                on_press: app.send_base_msg('line', [])
+
+                Image:
+                    source: 'img/line_dance.png'
+                    y: self.parent.y + self.parent.height - 160
+                    x: self.parent.x
+                    size: 150, 150
+                    allow_stretch: True
+
+            Button:
+                background_normal: ''
+                background_color: [ .1, .46, .82, 1 ]
+                always_release: False
+                on_press: app.send_base_msg('dancing', [])
+
+                Image:
+                    source: 'img/dance.png'
+                    y: self.parent.y + self.parent.height - 160
+                    x: self.parent.x
+                    size: 150, 150
+                    allow_stretch: True
+
+            Button:
+                background_normal: ''
+                background_color: [ .1, .46, .82, 1 ]
+                on_press: app.send_base_msg('free_wheel', [])
+                always_release: False
+
+                Image:
+                    source: 'img/race.png'
+                    y: self.parent.y + self.parent.height - 160
+                    x: self.parent.x
+                    size: 150, 150
+                    allow_stretch: True

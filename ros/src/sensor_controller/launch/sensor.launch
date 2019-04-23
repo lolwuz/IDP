@@ -1,0 +1,3 @@
+<launch>
+    <node name="gyroscope_publisher" pkg="sensor_controller" type="gyroscope_publisher.py"/>
+</launch>

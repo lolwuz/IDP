@@ -1,0 +1,188 @@
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+
+ScreenManagement:
+    MainScreen:
+    MenuScreen:
+    Module1Screen:
+    Module2Screen:
+    Module3Screen:
+    Module4Screen:
+    Module5Screen:
+    Module6Screen:
+    Module7Screen:
+    Besturing:
+    Emoticons:
+
+<MainScreen>:
+    name: 'main'
+
+    BoxLayout:
+        Button:
+            text: 'Start v2'
+            on_release:
+                app.root.current = 'menu'
+                app.root.transition = NoTransition(duration=0)
+            font_size: 50
+
+<MenuScreen>:
+    name: 'menu'
+
+    GridLayout:
+        id: grid
+        cols: 3
+        Button:
+            text: 'Entering the arena'
+            on_release:
+                app.root.current = 'module1'
+                app.root.transition = NoTransition(duration=0)
+
+        Button:
+            text: 'Fast and the furious'
+            on_release:
+                app.root.current = 'module2'
+                app.root.transition = NoTransition(duration=0)
+
+        Button:
+            text: 'So you think you can dance'
+            on_release:
+                app.root.current = 'module3'
+                app.root.transition = NoTransition(duration=0)
+
+        Button:
+            text: 'Line dance'
+            on_release:
+                app.root.current = 'module4'
+                app.root.transition = NoTransition(duration=0)
+
+        Button:
+            text: 'Obstacle course'
+            on_release:
+                app.root.current = 'module5'
+                app.root.transition = NoTransition(duration=0)
+
+        Button:
+            text: 'Cannon'
+            on_release:
+                app.root.current = 'module6'
+                app.root.transition = NoTransition(duration=0)
+
+        Button:
+            text: 'Transport and rebuild'
+            on_release:
+                app.root.current = 'module7'
+                app.root.transition = NoTransition(duration=0)
+
+        Button:
+            text: 'Besturing'
+            on_release:
+                app.root.current = 'besturing'
+                app.root.transition = NoTransition(duration=0)
+
+        Button:
+            text: 'Emoticons'
+            on_release:
+                app.root.current = 'emoticons'
+                app.root.transition = NoTransition(duration=0)
+
+<Module1Screen>:
+    name: 'module1'
+    BoxLayout:
+        Button:
+            text: 'Start'
+            on_release:
+                app.sendMessage(str([1,2,3]))
+        Button:
+            text: 'Back'
+            on_release:
+                app.root.current = 'menu'
+                app.root.transition = NoTransition(duration=0)
+                app.sendMessage("bakmesg")
+
+<Module2Screen>:
+    name: 'module2'
+    BoxLayout:
+        Button:
+            text: 'Start'
+        Button:
+            text: 'Back'
+            on_release:
+                app.root.current = 'menu'
+                app.root.transition = NoTransition(duration=0)
+                app.sendMessage(str([1,2,3]))
+
+<Module3Screen>:
+    name: 'module3'
+    BoxLayout:
+        Button:
+            text: 'Start'
+        Button:
+            text: 'Back'
+            on_release:
+                app.root.current = 'menu'
+                app.root.transition = NoTransition(duration=0)
+
+<Module4Screen>:
+    name: 'module4'
+    BoxLayout:
+        Button:
+            text: 'Start'
+        Button:
+            text: 'Back'
+            on_release:
+                app.root.current = 'menu'
+                app.root.transition = NoTransition(duration=0)
+<Module5Screen>:
+    name: 'module5'
+    BoxLayout:
+        Button:
+            text: 'Start'
+        Button:
+            text: 'Back'
+            on_release:
+                app.root.current = 'menu'
+                app.root.transition = NoTransition(duration=0)
+
+<Module6Screen>:
+    name: 'module6'
+    BoxLayout:
+        Button:
+            text: 'Start'
+        Button:
+            text: 'Back'
+            on_release:
+                app.root.current = 'menu'
+                app.root.transition = NoTransition(duration=0)
+
+<Module7Screen>:
+    name: 'module7'
+    BoxLayout:
+        Button:
+            text: 'Start'
+        Button:
+            text: 'Back'
+            on_release:
+                app.root.current = 'menu'
+                app.root.transition = NoTransition(duration=0)
+
+<Besturing>:
+    name: 'besturing'
+    BoxLayout:
+        Button:
+            text: 'Start'
+        Button:
+            text: 'Back'
+            on_release:
+                app.root.current = 'menu'
+                app.root.transition = NoTransition(duration=0)
+
+<Emoticons>:
+    name: 'emoticons'
+    BoxLayout:
+        Button:
+            text: 'Start'
+        Button:
+            text: 'Back'
+            on_release:
+                app.root.current = 'menu'
+                app.root.transition = NoTransition(duration=0)
+

@@ -1,0 +1,4 @@
+<launch>
+    <node name="joystick_publisher" pkg="joystick" type="joystick_publisher.py"/>
+    <node name="kivy_node" pkg="robot_base" type="main.py"/>
+</launch>

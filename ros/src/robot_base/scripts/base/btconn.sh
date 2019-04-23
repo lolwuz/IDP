@@ -1,0 +1,16 @@
+#!/usr/bin/expect
+
+spawn "bluetoothctl"
+expect "#"
+send "power on\r"
+expect "Changing power on succeeded"
+send "pairable on\r"
+expect "Changing pairable on succeeded"
+send "agent on\r"
+expect "Agent registered"
+send "default-agent\r"
+expect "Default agent request successful"
+send "discoverable on"
+expect "Controller B8:27:EB:75:44:2C Discoverable: yes"
+#send "connect B8:27:EB:75:44:2C\r"
+#expect "d"
